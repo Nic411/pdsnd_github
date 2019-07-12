@@ -19,7 +19,9 @@ def get_filters():
     # HINT: Use a while loop to handle invalid inputs
     city = ''
     while True:
-        city = input('\nFor which city would you like to carry out the data analysis?\n Enter the name of the desired city: Chicago, New York City, Washington: ')
+        city = input('\nFor which city would you like to carry out the data analysis?\n\
+                    Enter the name of the desired city: Chicago, New York City, Washington: ')
+
         if city.lower() in CITY_DATA:
             break
         else:
@@ -28,7 +30,10 @@ def get_filters():
     # TO DO: get user input for month (all, january, february, ... , june)
     month = ''
     while True:
-        month = input('\nFor which month should the analysis be carried out?\n Enter the month: January, February, ... , June) or "all" to apply no month filter: ')
+        month = input('\nFor which month should the analysis be carried out?\n\
+                    Enter the month: January, February, ... , June) or "all" to\
+                    apply no month filter: ')
+
         if month.lower() in ['january', 'february', 'march', 'april', 'may', 'june', 'all']:
             break
         elif month.lower() == 'all':
@@ -39,8 +44,11 @@ def get_filters():
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day = ''
     while True:
-        day = input('\nFor which day of week should the analysis be carried out?\n Enter the day: Monday, Tuesday, ... Sunday) or "all" to apply no day filter: ')
-        if day.lower() in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']:
+        day = input('\nFor which day of week should the analysis be carried out?\n\
+                    Enter the day: Monday, Tuesday, ... Sunday) or "all" to apply no day filter: ')
+
+        if day.lower() in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday',
+                            'saturday', 'sunday', 'all']:
             break
         elif day.lower() == 'all':
             break
@@ -127,8 +135,8 @@ def station_stats(d_f):
     # TO DO: display most frequent combination of start station and end station trip
     com_start_end_station = d_f[['Start Station', 'End Station']].dropna()
     com_start_end_station = com_start_end_station.groupby(['Start Station', 'End Station']).size().nlargest(1)
-    print('\nMost frequent combination of start station and end station trip: ', com_start_end_station)
 
+    print('\nMost frequent combination of start station and end station trip: ', com_start_end_station)
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -161,7 +169,8 @@ def user_stats(d_f):
 
     #user_gender = d_f['Gender'].dropna()
     if 'Gender' not in d_f:
-        print('\nUnfortunately, the data on gender and age are not available in the Washington database.')
+        print('\nUnfortunately, the data on gender and age are not available in\
+                the Washington database.')
     else:
         # TO DO: Display counts of gender
         gender = d_f['Gender'].value_counts()
